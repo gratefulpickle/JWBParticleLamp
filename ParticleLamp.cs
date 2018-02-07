@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,20 +8,26 @@ namespace JWBParticleLamp
 
     public class ParticleLamp
     {
-        const string StevesLampURL = "";
         public string DeviceID { get; set; }
         public string Token { get; set; }
         public string LastResponse { get; set; }
 
         public ParticleLamp() { }
 
+
         public async void Trigger(int eventid = 0)
+        {
+            await RemoteInvoke("Trigger", eventid.ToString());
+
+        }
+
+        public async Task RemoteInvoke(string cmd, string args = "")
         {
             await Task.Run(() =>
             {
-                var url = GetDeviceURL() + "/Trigger";
+                var url = GetDeviceURL() + "/" + cmd;
 
-                var postData = "args=" + eventid.ToString();
+                var postData = "args=" + args.ToString();
                 var data = Encoding.ASCII.GetBytes(postData);
 
 
@@ -49,7 +54,6 @@ namespace JWBParticleLamp
             });
 
         }
-
 
 
         private string GetDeviceURL()
