@@ -1,6 +1,5 @@
 C:\Users\JWB\Documents\Visual Studio 2017\Projects\JWBParticleLamp\bin\Debug\JWBParticleLamp.dll
 C:\Users\JWB\Documents\Visual Studio 2017\Projects\JWBParticleLamp\bin\Debug\JWBParticleLamp.pdb
-C:\Users\JWB\Documents\Visual Studio 2017\Projects\JWBParticleLamp\obj\Debug\JWBParticleLamp.csprojResolveAssemblyReference.cache
 C:\Users\JWB\Documents\Visual Studio 2017\Projects\JWBParticleLamp\obj\Debug\JWBParticleLamp.csproj.CoreCompileInputs.cache
 C:\Users\JWB\Documents\Visual Studio 2017\Projects\JWBParticleLamp\obj\Debug\JWBParticleLamp.dll
 C:\Users\JWB\Documents\Visual Studio 2017\Projects\JWBParticleLamp\obj\Debug\JWBParticleLamp.pdb
