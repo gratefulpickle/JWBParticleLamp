@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,28 +30,34 @@ namespace JWBParticleLamp
 
                 var postData = "args=" + args.ToString();
                 var data = Encoding.ASCII.GetBytes(postData);
-
-
-                var request = (HttpWebRequest)WebRequest.Create(url);
-
-                request.Method = "POST";
-
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.Accept = "application/json";
-                request.Headers.Add("Authorization", "Bearer " + Token);
-                request.ContentLength = data.Length;
-                request.UserAgent = "Mozilla/4.0 (Windows 7 6.1) Java/1.6.0_26";
-                request.Proxy = null;
-
-                using (var stream = request.GetRequestStream())
+                try
                 {
-                    stream.Write(data, 0, data.Length);
+
+                    var request = (HttpWebRequest)WebRequest.Create(url);
+
+                    request.Method = "POST";
+
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.Accept = "application/json";
+                    request.Headers.Add("Authorization", "Bearer " + Token);
+                    request.ContentLength = data.Length;
+                    request.UserAgent = "Mozilla/4.0 (Windows 7 6.1) Java/1.6.0_26";
+                    request.Proxy = null;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+
+
+                    var response = request.GetResponse() as HttpWebResponse;
+
+                    LastResponse = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 }
-
-
-                var response = request.GetResponse() as HttpWebResponse;
-
-                LastResponse = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                catch (Exception Ex)
+                {
+                    LastResponse = Ex.Message;
+                }
             });
 
         }
